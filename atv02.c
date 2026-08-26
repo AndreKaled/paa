@@ -143,15 +143,19 @@ void heapSort(int* v, int n){
 
 void countSort(int* v, int n){
     int max = v[0];
+    //pega o maximo
     for(int i = 0; i < n; i++)
         if(v[i] > max)
             max = v[i];
 
+    // cria novo vetor aux 
     int* cntV = (int*)calloc(max + 1, sizeof(int));
 
+    // conta quantas vezes cada numero aparece em V
     for(int i = 0; i < n; i++)
         cntV[v[i]]++;
 
+    // confesso que nao entendi exatamente oq isso deveria fazer, mas funciona
     for(int i = 1; i <= max; i++)
         cntV[i] += cntV[i-1];
 
