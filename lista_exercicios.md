@@ -240,3 +240,5 @@ PROCEDURE Ordena (VAR A: ARRAY[1..n] of integer; i, j: integer);
     END;
 END;
 ```
+
+![Calculo de complexidade e função de custo](/imgs/funcao_custo_complexidade_b.png)
