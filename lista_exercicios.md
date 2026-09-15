@@ -208,3 +208,35 @@ def mdc_recursivo(a, b):
 ### g) Geração de todas as permutações de um número
 ### h) N-ésimo número da sequência de Fibonacci
 ### i) Nº de movimentos do jogo Torre de Hanói
+
+## 2. Obtenha a função de custo e a complexidade de tempo para cada um dos trechos de código apresentados abaixo:
+### (a) 
+```pascal
+PROCEDURE VerificaAlgo (n: integer);
+    VAR i, j, k, l: integer;
+        BEGIN
+        FOR l := 1 TO 1000 DO
+            FOR i := 1 TO n-10 DO
+                FOR j := i+1 TO n/2 DO
+                    FOR k := 1 TO n DO
+                        { Inspecione elemento }
+END;
+```
+
+![Calculo de complexidade e função de custo](/imgs/funcao_custo_complexidade_a.png)
+
+### (b)
+```pascal
+PROCEDURE Ordena (VAR A: ARRAY[1..n] of integer; i, j: integer);
+    { n uma potência de 3 }
+    BEGIN
+        IF i < j THEN BEGIN
+            m := ((j –i) + 1)/3;
+            Ordena(A, i, i+m-1);
+            Ordena(A, i+m, i+2m-1);
+            Ordena(A, i+2m, j);
+            Merge(A, i, i+m, i+2m, j);
+        { Merge intercala A[i..(i+m-1)], A[(i+m)..(i+2m-1)] e A[i+2m..j] em A[i..j] a um custo ( ( 5n/3 ) - 2 ) }
+    END;
+END;
+```
