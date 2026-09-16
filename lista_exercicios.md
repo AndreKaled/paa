@@ -242,3 +242,138 @@ END;
 ```
 
 ![Calculo de complexidade e função de custo](/imgs/funcao_custo_complexidade_b.png)
+
+## 3. Considere a equação abaixo, que define uma função f(n) para números inteiros não negativos. Escreva algoritmos recursivos e iterativos (não-recursivos) que representem a relação de recorrência abaixo:
+$$f(n) = \begin{cases} n, & \text{para } n \le 1 \\ f(n/2), & \text{para } n > 1 \end{cases}$$
+
+Algoritmo recursivo:
+```c
+int f(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    return f(n / 2);
+}
+```
+
+Algoritmo iterativo:
+```c
+int f(int n) {
+    while (n > 1) {
+        n = n / 2;
+    }
+    return n;
+}
+```
+
+# Parte 2 - Entendendo o comportamento assintótico de funções
+## 4 Escrever em notação O, o, Ω, ω, Θ:
+### (a) $n^3 –1$
+$\theta(n^3)$; $O(n^3)$; $o(n^4)$; $\Omega(n^3)$; $\omega(n^2)$
+
+### (b) $n^2 + 2 \log n$
+$\theta(n^2)$; $O(n^2)$; $o(n^3)$; $\Omega(n^2)$; $\omega(n)$
+
+### (c) $29n + n \log n$
+$\theta(n \log n)$; $O(n^2)$; $o(n^2)$; $\Omega(n \log n)$; $\omega(n)$
+
+### (d) $3n^n + 5(2^n)$
+$\theta(n^n)$; $O(n^n)$; $o(n^{n+1})$; $\Omega(n^n)$; $\omega(2^n)$
+
+### (e) $(n-1)^n + n^{n-1})$
+$\theta(n^n)$; $O(n^n)$; $o(n^{n+1})$; $\Omega(n^n)$; $\omega(n^{n-1})$
+
+### (f) $302$
+$\theta(1)$; $O(1)$; $o(\log n)$; $\Omega(1)$; $\omega(1/n)$
+
+## 5. Demonstre se é certo ou errado:
+### (a) Se $f,g$ são funções tais que $f = O(g)$ e $g = \Omega(g)$, então $f = \theta(g)$.
+Note que $g = \Omega(g)$ é uma tautologia, portanto a hipótese se reduz a apenas $f = O(g)$
+
+Suponha por absurdo que a afirmação é verdadeira, ou seja, que $f = O(g)$ implica $f = \Theta(g)$.
+ 
+Por definição, $f = \Theta(g)$ exige duas condições simultâneas:
+$$\exists\, c_1, c_2 > 0,\ n_0 \in \mathbb{N} \text{ tais que } c_1\,g(n) \le f(n) \le c_2\,g(n), \quad \forall\, n \ge n_0$$
+ 
+Seria necessário que $f = \Omega(g)$, ou seja, que $f$ cresce pelo menos tão rápido quanto $g$.
+ 
+Tome o contraexemplo: $f(n) = 1$ e $g(n) = n$.
+ 
+- $f = O(g)$? Sim: $1 \le 1 \cdot n$ para todo $n \ge 1$. ✓
+- Pela afirmação, deveríamos ter $f = \Theta(g)$, logo em particular $f = \Omega(g)$.
+- $f = \Omega(g)$ exigiria $\exists\, c > 0$ tal que $1 \ge c \cdot n$ para todo $n$ suficientemente grande.
+- Mas $c \cdot n \to +\infty$, então não existe tal $c$. Contradição, Errado.
+Logo a afirmação é falsa.
+
+### (b) Se a complexidade do M.C. de um algoritmo for $f$, então o número de passos que o algoritmo efetua, para qualquer entrada, é $\Omega(f)$.
+
+### (c) Se a complexidade de P.C. de um algoritmo for $f$, então o número de passos que o algoritmo efetua, para qualquer entrada, é $\theta(f)$.
+P.C = $f(n)$ significa que toda entrada custa $O(f(n))$ Não garante que toda entrada custe $\Omega(f(n))$. SUponha por absurdo que toda entrada tem custo $\theta(f(n))$. Tomando Insertion Sort, seu pior caso é $f(n) = \theta(n^2)$. Pela afirmação toda entrada deveria ter custo $\theta(n^2)$. Mas a entrada já ordenada o custo é $\theta(n)$, e $\theta(n) \neq \theta(n^2)$. Contradição. Errado.
+
+### (d) A complexidade de M.C. de um algoritmo para um certo problema é necessariamente maior do que qualquer limite inferior para o problema.
+Suponha por absurdo que a M.C. do algoritmo >= qualquer limite inferior do problema. Tomando Insertion Sort no problema de ordenação por comparações:
+* O limite inferior do problema é $\Omega(n \log n)$
+* O M.C. do Insertion Sort é $\theta(n)$ (entrada já ordenada)
+
+Pela afirmação, deveríamos ter $\theta(n) >= \theta(n \log n)$, mas $n = o(n \log n)$, logo n cresce mais devagar que $n \log n$. Contradição. Errado.
+
+### (e) $o(g(n)) \cap \omega(g(n))$ é o conjunto vazio.
+Suponha por absurdo que existe $f$ tal que $f \in o(g)$ e $f \in \omega(g)$ simultaneamente.
+Tomando $f = o(g)$ significa que $\lim_{n \to \infin} {f(n)}/{g(n)} = 0$, 
+e que $f = \omega(g)$ significa que $\lim_{n \to \infin} {f(n)}/{g(n)} = +\infin$
+Isso é uma contradição, pois temos que o limite $\lim_{n \to \infin} {f(n)}/{g(n)} satisfaz simultaneamente $L = 0$ e $L = +\infin$. e um limite é único, não se pode assumir dois valores simultaneos
+
+## 6. Suponha dois algoritmos A e B, com funções de complexidade de tempo $a(n) = n^2 - n + 549$ e $b(n) = 49n + 49$, respectivamente. Determine quais valores de n pertencentes ao conjunto dos números naturais, para os quais A leva menos tempo para executar do que B.
+$a(n) < b(n)$
+$n^2 - n + 549 < 49n + 49$
+$n^2 - n - 49n + 549 - 49 < 0$
+$n^2 - 50n + 500 < 0$
+$\triangle = b^2 -4ac = (-50)^2 - 4(1)(500) = 2500 - 2000 = 500$
+$n = {-(-50) \pm \sqrt{500}/2(1)} = {50 \pm 10\sqrt{5}}/2 = {25 \pm 5\sqrt(5)}$
+
+Aproximando a raiz, temos:
+$13,82 < n < 36,18$
+
+Portanto para os numeros naturais:
+$n \in {14, 15, 16, ..., 35, 36}$
+
+## 7. Verifique:
+### (a) $2n^2 +1$ é $O(2^n)$
+$\lim_{n \to \infin} {2n^2+1}/{2^n} = 0$
+Verdade
+### (b) $2n^2 +1$ é $O(n^2)$
+$\lim_{n \to \infin} {2n^2+1}/{n^2} = \lim_{n \to \infin} 2 + {1}/{n^2} = 2+0 = 2$
+Verdade
+### (c) $n^r$ é $O(n^s)$
+$\lim_{n \to \infin} {n^r}/{n^s} = \lim_{n \to \infin} n^{r-s}$
+Se $r <= s$, então o limite é 1 (para $r = s$) ou 0 (para $r < s$).
+Se $r > s$, então o limite tende a $\infin$.
+É verdade se $r <= s$, e falso se $r > s$.
+### (d) $n^{k+1}$ é $O(n^k)$
+$\lim_{n \to \infin} {n^{k+1}}/{n^k} = \lim_{n \to \infin} n^{k+1-k} = \lim_{n \to \infin} n^{1} = \infin$
+Como o limite tende a $\infin$, é falso.
+### (e) $2^{2n}$ é $O(2^n)$
+$\lim_{n \to \infin} {2^{2n}}/{2^n} = \lim_{n \to \infin} {(2^n)^2}/{2^n} = \lim_{n \to \infin} 2^n = \infin$
+Como o limite tende a $\infin$, é falso.
+### (f) $n \log n$ é $O(n^2)$
+### (g) $403$ é $O(1)$
+$\lim_{n \to \infin} {403}/{1} = 403$
+Como o limite dá uma constante, é verdade.
+### (h) $n \log n$ é $O(n^{1+e})$
+### (h) $n^k$ é $O(2^n)$
+
+## 8. Prove ou disprove quem é \theta de quem (faça comparações entre as 3 funções):
+### (a) $f(n) = n^2-1$
+### (b) $g(n) = n^2$
+### (c) $h(n) = n^3$
+
+$$\lim_{n \to \infin} {f(n)}/{g(n)} = \lim_{n \to \infin} {n^2-1}/{n^2} = \lim_{n \to \infin} {1 - 1/{n^2}} = 1 - 0 = 1$$
+Como o limite é constante 1 (e maior que 0), fica provado que $f(n) = \theta(g(n))$, e por simetria $g(n) = \theta(f(n))$.
+
+$$\lim_{x \to \infin} {g(n)}/{h(n)} = \lim_{x \to \infin} {n^2}/{n^3} = \lim_{x \to \infin} 1/n = 0$$
+Como o limite é 0, g(n) cresce mais devagar que h(n), portanto a relação correta é $g(n) = o(h(n))$
+
+$$\lim_{x \to \infin} {f(n)}/{h(n)} = \lim_{x \to \infin} {n^2-1}/{n^3} = \lim_{x \to \infin} {n^2}/{n^3} - {1}{n^3} = \lim_{x \to \infin} {1}/{n} - {1}{n^3} = 0 - 0 = 0$$
+Novamente o limite é 0, portanto f(n) cresce mais devagar que h(n).
+
+Somente $f(n) = \theta(g(n))$
