@@ -48,13 +48,13 @@ int buscaBinariaRecursiva(int* A, int esq, int dir, int x){
 ```
 
 Cálculo da ordem de complexidade:
-![Busca Sequencial Iterativa Notations](/imgs/busca_sequencial_iterativo.png)
+![Busca Sequencial Iterativa Notations](./imgs/busca_sequencial_iterativo.png)
 
-![Busca Sequencial Recursiva Notations](/imgs/busca_sequencial_recursivo.png)
+![Busca Sequencial Recursiva Notations](./imgs/busca_sequencial_recursivo.png)
 
-![Busca Binária Iterativa Notations](/imgs/busca_binaria_iterativa.png)
+![Busca Binária Iterativa Notations](./imgs/busca_binaria_iterativa.png)
 
-![Busca Binária Recursiva Notations](/imgs/busca_binaria_recursiva.png)
+![Busca Binária Recursiva Notations](./imgs/busca_binaria_recursiva.png)
 
 | Algoritmo                  | M.C.      | C.M.      | P.C.      | Ordem      | L.I.       | Ótimo?                        |
 |----------------------------|-----------|-----------|-----------|------------|------------|-------------------------------|
@@ -80,9 +80,9 @@ int fatorial_recursivo(int N){
 ```
 
 Calculo de ordem de complexidade:
-![Fatorial iterativo notations](/imgs/fatorial_iterativo.png)
+![Fatorial iterativo notations](./imgs/fatorial_iterativo.png)
 
-![Fatorial recursivo notations](/imgs/fatorial_recursivo.png)
+![Fatorial recursivo notations](./imgs/fatorial_recursivo.png)
 
 | Versão    | M.C.  | C.M.  | P.C.  | Ordem  | L.I.   | Ótimo? |
 |-----------|-------|-------|-------|--------|--------|--------|
@@ -121,9 +121,9 @@ def max_min_recursivo(lista):
 ```
 
 Cálculo de ordem de complexidade:
-![Maximo e mínimo de uma lista iterativo](/imgs/max_min_iterativo.png)
+![Maximo e mínimo de uma lista iterativo](./imgs/max_min_iterativo.png)
 
-![Maximo e mínimo de uma lista recursivo](/imgs/max_min_iterativo.png)
+![Maximo e mínimo de uma lista recursivo](./imgs/max_min_iterativo.png)
 
 | Versão    | M.C.  | C.M.  | P.C.  | Ordem | L.I.  | Ótimo? |
 |-----------|-------|-------|-------|-------|-------|--------|
@@ -168,13 +168,13 @@ def mult_matrizes_recursiva_indices(A, B, C, i, j, k, n):
         mult_matrizes_recursiva_indices(A, B, C, i + 1, 0, 0, n)
 ```
 
-![Soma de matrizes Iterativo](/imgs/soma_matrizes_iterativo.png)
+![Soma de matrizes Iterativo](./imgs/soma_matrizes_iterativo.png)
 
-![Soma de matrizes Recursivo](/imgs/soma_matrizes_recursivo.png)
+![Soma de matrizes Recursivo](./imgs/soma_matrizes_recursivo.png)
 
-![Multiplicação de matrizes Iterativo](/imgs/multiplicacao_matrizes_iterativo.png)
+![Multiplicação de matrizes Iterativo](./imgs/multiplicacao_matrizes_iterativo.png)
 
-![Multiplicação de matrizes Recursivo](/imgs/multiplicacao_matrizes_recursivo.png)
+![Multiplicação de matrizes Recursivo](./imgs/multiplicacao_matrizes_recursivo.png)
 
 #### Soma de Matrizes (N×N)
 
@@ -223,7 +223,7 @@ PROCEDURE VerificaAlgo (n: integer);
 END;
 ```
 
-![Calculo de complexidade e função de custo](/imgs/funcao_custo_complexidade_a.png)
+![Calculo de complexidade e função de custo](./imgs/funcao_custo_complexidade_a.png)
 
 ### (b)
 ```pascal
@@ -241,7 +241,7 @@ PROCEDURE Ordena (VAR A: ARRAY[1..n] of integer; i, j: integer);
 END;
 ```
 
-![Calculo de complexidade e função de custo](/imgs/funcao_custo_complexidade_b.png)
+![Calculo de complexidade e função de custo](./imgs/funcao_custo_complexidade_b.png)
 
 ## 3. Considere a equação abaixo, que define uma função f(n) para números inteiros não negativos. Escreva algoritmos recursivos e iterativos (não-recursivos) que representem a relação de recorrência abaixo:
 $$f(n) = \begin{cases} n, & \text{para } n \le 1 \\ f(n/2), & \text{para } n > 1 \end{cases}$$
@@ -377,3 +377,10 @@ $$\lim_{x \to \infin} {f(n)}/{h(n)} = \lim_{x \to \infin} {n^2-1}/{n^3} = \lim_{
 Novamente o limite é 0, portanto f(n) cresce mais devagar que h(n).
 
 Somente $f(n) = \theta(g(n))$
+
+## 11. Prove que qualquer função exponencial com uma base estritamente maior que 1 cresce mais rapidamente do que qualquer função polinomial.
+Sejam $b > 1$ a base da exponencial e $k > 0$ o grau do polinômio.
+Temos então: $b^n = \omega(n^k)$ ou então $\lim_{n \to \infin} \frac{n^k}{b^n} = 0$.
+$\lim_{n \to \infin} \frac{n^k}{b^n} = \frac{\infin}{\infin}$. Aplicando então L'Hôpital...
+$$\lim_{n \to \infin} \frac{n^k}{b^n} = \lim_{n \to \infin} \frac{k*n^{k-1}}{b^n * \ln(b)} = \lim_{n \to \infin} \frac{k(k-1)*n^{k-2}}{b^n * \ln(b)^2} = \lim_{n \to \infin} \frac{k(k-1)(k-2)*n^{k-3}}{b^n * \ln(b)^3} = ... = \lim_{n \to \infin} \frac{k!}{b^n * \ln(b)^k} = \frac{1}{\infin} = 0$$
+Como $\lim_{n \to \infin} \frac{n^k}{b^n} = 0$, fica provado que $b^n$ cresce mais rápido  de que $n^k$ para qualquer $b > 1$ e $k > 0$, portanto $b^n = \omega(n^k)$
