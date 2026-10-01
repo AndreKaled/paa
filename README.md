@@ -13,3 +13,4 @@ Repositório para armazenamento de códigos, artefatos teóricos, análises assi
 * **[Atividade 02 - Documentação dos Algoritmos de Busca e Ordenação](atv02.md):** Especificações de entrada, saída, restrições e pseudocódigos da Busca Sequencial, Busca Binária, Merge Sort, Heap Sort e Counting Sort.
 * **[Atividade 02 - Implementações em C](atv02.c):** Código-fonte funcional em C contendo as implementações e testes práticos de cada algoritmo de busca e ordenação documentado.
 * **[Lista de exercícios](lista_exercicios.md):** Markdown contendo implementações e resolução de alguns exercícios da lista
+* **[Resolução Prova 1](resolucao_prova1.md):** Markdown com resolução de algumas questões que caíram na minha prova de 2026
